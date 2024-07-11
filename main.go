@@ -18,19 +18,19 @@ func main() {
 				fmt.Println("プログラム終了。")
 				break
 			}
-			remainingTimeInSeconds, err := convertInputToSeconds(input)
+			remainingTimeInSeconds, err := convertInput(input)
 			if err != nil {
 				fmt.Println(err.Error())
 				continue
 			}
 
-			activationTime := calculateActivationTime(remainingTimeInSeconds)
+			activationTime := calcTime(remainingTimeInSeconds)
 			fmt.Printf("奥義発動時間: %s\n\n", secondsToMMSS(activationTime))
 		}
 	}
 }
 
-func convertInputToSeconds(input string) (int, error) {
+func convertInput(input string) (int, error) {
 	if len(input) != 4 {
 		return -1, fmt.Errorf("入力はmmss形式で4桁")
 	}
@@ -48,7 +48,7 @@ func convertInputToSeconds(input string) (int, error) {
 	return minutes*60 + seconds, nil
 }
 
-func calculateActivationTime(currentSeconds int) int {
+func calcTime(currentSeconds int) int {
 	return currentSeconds - 90
 }
 
